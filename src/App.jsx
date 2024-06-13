@@ -1,24 +1,27 @@
 // rafce->react arrow function component export
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Homecards from "./components/Homecards";
-import Joblistings from "./components/Joblistings";
-import Viewalljobs from "./components/Viewalljobs";
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
+
+import Homepage from "./pages/Homepage";
+import Mainlayouts from "./layouts/Mainlayouts";
+import Jobspage from "./pages/Jobspage";
 import React from "react";
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Mainlayouts />}>
+      <Route index element={<Homepage />} />
+      <Route path="/jobs" element ={<Jobspage/>}/>
+    </Route>
+  )
+);
 const App = () => {
   return (
-    <>
-      <Navbar />
-
-      <Hero title="Test title" subtitle="This is a Test subtitle" />
-
-      <Homecards />
-
-      {/* <!-- Browse Jobs --> */}
-      <Joblistings />
-      <Viewalljobs />
-    </>
+    <RouterProvider router={router} />
   );
 };
 
